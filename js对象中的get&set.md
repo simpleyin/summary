@@ -1,7 +1,7 @@
 # js对象中的get, set访问器
 
 ## 问题的提出
-在使用addEventlistener接口时我遇到了浏览器兼容性的问题，一些老旧的浏览器使用```addEventlistener(type: string, function: Function, useCapture: boolean)```接口，当我们使用新的接口（capture被包裹在了一个option对象中）时，旧浏览器变会出错。Mozzila给出了解决方案，通过使用对象的get特性。
+在使用addEventlistener接口时可能会遇到了浏览器兼容性的问题，一些老旧的浏览器使用```addEventlistener(type: string, function: Function, useCapture: boolean)```接口，当我们使用新的接口（capture被包裹在了一个option对象中）时，旧浏览器变会出错。Mozzila给出了解决方案，通过使用对象的get特性。
 
 ## [[get]], [[put]]概念
 ```javascript
