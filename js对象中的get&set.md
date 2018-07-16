@@ -58,3 +58,6 @@ set name(n) {
     this.name = n;
 }
 ```
+
+## 参考
+* [深入浅出ES6(12)](http://www.infoq.com/cn/articles/es6-in-depth-proxies-and-reflect)
