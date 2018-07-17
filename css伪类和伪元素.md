@@ -37,7 +37,7 @@ button:avtive {
 
 * ```:focus``` 应用于获取焦点的元素，如，表单输入
 
-* ```:hover``` 应用于被用户使用的设备（如，鼠标）虚指的元素（并没有激活,active），并且按照LVHA的顺序排列在active之前，element:link:visited:hover:active
+* ```:hover``` 应用于被用户使用的设备（如，鼠标）虚指的元素（并没有激活,active），并且按照LVHA的顺序排列在active之前，element\:link\:visited:hover:active
 
 ## 伪元素
 >css伪元素向指定的元素上添加修饰元素
