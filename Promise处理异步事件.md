@@ -35,6 +35,29 @@ mergePromise([ajax1, ajax2, ajax3]).then(data => {
 ```
 
 ## Promise简介
+> Promise对象表达了对某种承诺的实现状态。
+
+1. 构造方法：
+```javascript
+var p = new Promise((resolve, reject) => {
+    if ("worked fine") {
+        resolve("success");
+    } else {
+        reject("fail");
+    }
+})
+```
+2. 链式调用：
+```javascript
+Promise.resolve("hi").then((data) => {
+    //fulfillment 上一个Promise的状态为resolve，则执行此处代码
+}, (reason) => {
+    //rejection 上一个Promise的状态为reject,则执行此处代码
+})
+```
+由于promise.then()返回一个Promise，则可在返回值上继续调用then(), catch()等方法。
+then()函数中回调函数的返回值影响接下来的Promise链。
+> * 若then中的回调函数范围一个值，则then返回的Promise将成为接受状态，且返回的值作为Promise resolve()中的值进行参数传递。
 
 ## 问题解决
 ```javascript
@@ -63,9 +86,9 @@ const mergePromise = ajaxArray => {
 };
 ```
 
-## 问题扩展
+## 问题扩展
 1. 如何使用rxjs解决该题。
-2. 如何使得三个ajax函数同时执行并返回规定的数组。
+2. 如何使得三个ajax函数同时执行并返回规定的数组。
 
 
 ## 参考
