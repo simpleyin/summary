@@ -57,7 +57,9 @@ Promise.resolve("hi").then((data) => {
 ```
 由于promise.then()返回一个Promise，则可在返回值上继续调用then(), catch()等方法。
 then()函数中回调函数的返回值影响接下来的Promise链。
-> * 若then中的回调函数范围一个值，则then返回的Promise将成为接受状态，且返回的值作为Promise resolve()中的值进行参数传递。
+> * 若then中的回调函数范围一个值，则then返回的Promise将成为接受状态，且返回的值作为接受的回调函数的参数值。
+> * 若then中回调函数抛出一个错误，则then返回的Promise为拒绝状态，且抛出的错误作为拒绝的回调函数的参数值。
+> * 若then中的回调函数返回一个Promise，那then方法返回的Promise与这个Promise具有相同的状态，这个Promise的回调函数参数作为then()方法返回的Promise的相应回调函数的参数。
 
 ## 问题解决
 ```javascript
@@ -88,7 +90,7 @@ const mergePromise = ajaxArray => {
 
 ## 问题扩展
 1. 如何使用rxjs解决该题。
-2. 如何使得三个ajax函数同时执行并返回规定的数组。
+2. 如何使得三个ajax函数同时执行并按照规定的顺序返回值。
 
 
 ## 参考
