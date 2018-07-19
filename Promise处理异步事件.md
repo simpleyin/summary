@@ -1,7 +1,7 @@
 # Promise处理异步事件
 
 ## 问题
-一道编程填空题如下，补充完mergePromise函数使其满足cosole: [1, 2, 3]的输出
+一道编程填空题如下，补充完mergePromise函数使其满足console: [1, 2, 3]的输出
 ```javascript
 const timeout = ms => new Promise((resolve, reject) => {
 	setTimeout(() => {
@@ -61,6 +61,38 @@ then()函数中回调函数的返回值影响接下来的Promise链。
 > * 若then中回调函数抛出一个错误，则then返回的Promise为拒绝状态，且抛出的错误作为拒绝的回调函数的参数值。
 > * 若then中的回调函数返回一个Promise，那then方法返回的Promise与这个Promise具有相同的状态，这个Promise的回调函数参数作为then()方法返回的Promise的相应回调函数的参数。
 
+3. 错误处理
+Promise只能catch promise对象处于reject状态下的错误，若在resolve状态下抛出错误(throw Error)，无法使用catch捕获。
+因此，建议使用Promise时不抛出错误，而是使用reject传递错误。
+
+4. 与setTimeout执行的优先级比较
+Promise在event loop中属于microtask，setTimeout属于Task queue。
+microtask执行优先级 > Task queue
+event loop机制会在主进程没有任务时，先查看microtask队列是否存在任务，循环查看直到队列为空。接着在检查Task queue是否有任务，循环查看执行直到队列为空。
+思考下面代码的输出顺序:
+```javascript
+const testReturn = a =>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            if(a){
+                console.log('1');
+            }else{
+                reject('false');
+            }
+        })
+        resolve("2");
+        console.log('3');
+    })
+}
+
+testReturn(true).then(str=>{
+    console.log(str);
+    // console.log(testReturn)
+}).catch(err=>{
+    console.log('err: ',err);
+})
+```
+
 ## 问题解决
 ```javascript
 const mergePromise = ajaxArray => {
@@ -96,3 +128,4 @@ const mergePromise = ajaxArray => {
 ## 参考
 * [google web dev](https://developers.google.com/web/fundamentals/primers/promises#queuing_asynchronous_actions)
 * [Promise.prototype.then()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+* [腾讯IMWeb Promise最佳实践](http://imweb.io/topic/5b3b7b484d378e703a4f4436)
