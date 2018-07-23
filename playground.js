@@ -1,16 +1,32 @@
-//问题1，为Array添加一个处理到重复元素的方法, 也可用reduce
-Array.prototype.removeSame = function () {
-    return this.sort((a, b) => a - b)
-                .map((v, i, a) => v === a[i + 1] ? undefined : v)
-                    .filter((v) => v !== undefined);
+var httpRequest;
+if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+    httpRequest = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // IE 6 and older
+    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-
-
-//问题2，用js实现用户登录的验证
-function verify(account, password) {
-
-}
-
-
-console.log([0, 1, 2, 3, 4].reduce((p, c) => p + c, 1));
+httpRequest.open("GET", "http://www.simpleyin.xyz", true);
+httpRequest.send();
+httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+httpRequest.onreadystatechange = function() {
+    if (this.readyState === 0) {
+        //UNSENT, request not initialized, open() not called yet
+        console.log(0);
+    }
+    else if (this.readyState === 1) {
+        //OPENED, server connection established, open() has been called
+        console.log(1);
+    }
+    else if (this.readyState === 2) {
+        //HEADERS_RECEIVED, request received, 
+        console.log(2);
+    }
+    else if (this.readyState === 3) {
+        //LOADING, processing request, Downloading, responseText holds partial data.
+        console.log(3);
+    }
+    else if (this.readyState === 4) {
+        //request finished and response is ready
+        console.log(4);
+    }
+};
