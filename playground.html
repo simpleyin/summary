@@ -6,22 +6,72 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    
+    <style>
+        html,body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+        .header {
+            align-items: center;
+            background-color: teal;
+            flex: 1;
+        }
+        .main {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex: 8;
+        }
+            .main > .nav {
+                flex: 1;
+                background-color: goldenrod;
+            }
+            .main > .article {
+                flex: 7;
+                background-color: orchid;
+            }
+            .main > .aside {
+                flex: 1;
+                background-color: pink;
+            }
+        .footer {
+            background-color: green;
+            flex: 1;
+        }
+
+        @media screen and (max-width: 640px) {
+            .main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 8;
+        }
+            .main > .nav {
+                flex: 1;
+                background-color: goldenrod;
+            }
+            .main > .article {
+                flex: 7;
+                background-color: orchid;
+            }
+            .main > .aside {
+                flex: 1;
+                background-color: pink;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="header">header</div>
     <div class="main">
-        <span>
-            block elements:
-            have box-model properties but its width is 100% by default
-            <div style="color: white;background-color: red; height: 100px; width: 100px;margin: 100px">BLOCK</div>
-            <span style="color: white;background-color: red; height: 100px; width: 100px;margin: 100px">INLINE</span>
-            <div style="display:inline-block;color: white;background-color: red; height: 100px; width: 100px;margin: 100px">INLINE-BLOCK</div>
-            can't be wrapped by inline elements
-            A good example of a block element is a.             
-        </span>
-        <div style="background-color: green; height: 100px; width: 100px;">
-            
-        </div>
+        <div class="nav">nav</div>
+        <div class="article">article</div>
+        <div class="aside">aside</div>
     </div>
+    <div class="footer">footer</div>
 </body>
 </html>
