@@ -6,14 +6,14 @@
 有一道题目如下：
 ```javascript
 (function test() {
-    setTimeout(function() {console.log(4)}, 0);
+    setTimeout(function() {console.log(4)}, 0); //macro task
     new Promise(function executor(resolve) {
         console.log(1);
         for( var i=0 ; i<10000 ; i++ ) {
             i == 9999 && resolve();
         }
         console.log(2);
-    }).then(function() {
+    }).then(function() {    //micro task
         console.log(5);
     });
     console.log(3);

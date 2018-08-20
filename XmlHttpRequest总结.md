@@ -20,6 +20,8 @@ httpRequest.send();
 ```
 在上面的代码中根据不同的浏览器创建了不同的httpRequest对象,使用open()方法配置request对象。
 
+send()调用时开始进行http请求。open只是改变了httpRequest对象的readyState的状态，并没有“打开”链接。
+
 send()方法接受对服务器进行POST请求的参数（可以为哪些类型？是否必须序列化为字符串？）
 
 使用POST请求时，可以设置Content-Type头部，指定发送的数据类型。

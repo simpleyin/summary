@@ -57,21 +57,57 @@
             .main > .article {
                 flex: 7;
                 background-color: orchid;
+                padding: 10px;
             }
             .main > .aside {
                 flex: 1;
                 background-color: pink;
             }
         }
+
+        .block {
+            margin: 10px;
+            width: 100px;
+            height: 70px;
+            background-color: red;
+            display: inline-block;
+            border: 10px solid #000000;
+        }
+
+        .block-float {
+            float: left;
+        }
+
+        .row {
+            display: inline-block;
+            width: 400px;
+        }
+
+
     </style>
 </head>
 <body>
     <div class="header">header</div>
     <div class="main">
         <div class="nav">nav</div>
-        <div class="article">article</div>
+        <div class="article">
+            <div>
+                <div class="row">
+                    <div class="block">1</div>
+                </div>
+                <div>
+                    <div class="block">2</div>
+                    <div class="block block-float">3</div>
+                </div>
+            </div>
+        </div>
         <div class="aside">aside</div>
     </div>
     <div class="footer">footer</div>
+    <script src="./playground.js"></script>
+    <script src="./main.js"></script>
+    <script>
+        console.log(a);
+    </script>
 </body>
 </html>
