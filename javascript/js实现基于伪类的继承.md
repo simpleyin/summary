@@ -44,3 +44,6 @@ let apple = new Apple("big", "apple");  //实例化Apple类
 在使用构造调用Apple()时，构造函数Apple执行上下文中的this为构造调用新建的对象（apple），执行`Fruit.call(this, size)`就将Fruit执行上下文中的this绑定为apple。
 从而apple拥有了对Fruit作用域的访问权，形成了闭包。但是这种方式并不好理解，因此就有了基于[委托的继承]()。
 
+### 缺点
+
+在使用Fruit.call()时可能会产生副作用，Fruit构造函数中可能存在一些副作用代码。
