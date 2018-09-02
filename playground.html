@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
-    <link href="http://cdn.staticfile.org/foundation/6.0.1/css/foundation.css" rel="stylesheet">
-    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.js" defer></script>
-    <script src="http://libs.baidu.com/backbone/0.9.2/backbone.js" defer></script>
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js" defer></script>
+    <style>
+        html {
+            height: 10000px;
+        }
+    </style>
 </head>
 <body>
-    
-    <script>
-            var fade = function(node) {
-        var level = 1;
-        var step = function() {
-            var hex = level.toString(16);
-            node.style.backgroundColor = "#FFFF" + hex + hex;
-            if (level < 15) {
-                level++;
-                setTimeout(step, 1000);
-            } else {
-                level = 1;
-                setTimeout(step, 1000);
-            }
+<script>
+    var times = 0;
+    var timer = 0;
+
+    window.addEventListener("scroll", (e) => {
+        debounce(handler, 300);
+    })
+
+    function debounce(func, time) {
+        if (timer === 0) {
+            timer = setTimeout(() => {
+                func();
+                timer = 0;  //每次目标事件绑定函数的执行都会重置timer
+            }, time);
         }
-        setTimeout(step, 1000);
     }
 
-    fade(document.body);
-    console.log("fade 执行完毕");</script>
+
+    function handler() {
+        times++;
+        var div = document.createElement("div");
+        div.innerHTML = times;
+        document.body.appendChild(div);
+        console.log("scroll: " + times);
+    }
+</script>
 </body>
 </html> 
