@@ -47,6 +47,53 @@ await也可等待值，但这样不存在异步，也就没有意义。
 
 await会“阻塞”当前的async函数中后续代码的执行，这种阻塞其实类似于通过管理Promise的状态来决定何时执行后续Promise链中的代码一样。
 
+## EXAMPLE 2
+目前有三个Promise，分别在1s, 2s, 3s后处于resolved状态，现在需要按照123的顺序执行它们并打印出resolved值。
+
+```javascript
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_2s');
+        }, 2000);
+    });
+}
+
+function resolveAfter3Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_3s');
+        }, 3000);
+    });
+}
+
+function resolveAfter1Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_1s');
+        }, 1000);
+    });
+}
+
+//1. 传统的Promise链式调用
+resolveAfter1Seconds()
+    .then(v => {console.log(v); return resolveAfter2Seconds()})
+        .then(v => {console.log(v); return resolveAfter3Seconds()})
+            .then(v => console.log(v));
+
+//2. 使用async函数
+async function usingAsync() {
+    var result_1 = await resolveAfter1Seconds();
+    console.log(result_1);
+    var result_2 = await resolveAfter2Seconds();
+    console.log(result_2);
+    var result_3 = await resolveAfter3Seconds();
+    console.log(result_3);
+    // expected output: 'resolved'
+}
+//好处是更加简洁了？？emmmmm
+```
+
 
 
 ## 参考

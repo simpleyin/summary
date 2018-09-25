@@ -1,42 +1,41 @@
-// //快排
-// var mock = [6, 1, 2, 7, 9, 3, 4, 5, 10, 8];
-// var quickSort = function (arr) {
-//     var base = arr[0];
-//     var i = 0, j = arr.length - 1;
-//     if (arr.length === 1) return arr;
-//     while (i < j) {
-//         if (arr[j] >= base) {
-//             j--;
-//         } else if (arr[i] <= base) {
-//             i++;
-//         } else {
-//             swap(i, j, arr);
-//             j = j - 1;
-//             i = i + 1;
-//         }
-//     }
-//     swap(0, i, arr);
-//     var left = quickSort(arr.slice(0, i));
-//     var right = quickSort(arr.slice(i + 1, arr.length));
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_2s');
+        }, 2000);
+    });
+}
 
-    
-//     return [...left, base, ...right];
-// }
+function resolveAfter3Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_3s');
+        }, 3000);
+    });
+}
 
-// var swap = function (i, j, arr) {
-//     var t = arr[j];
-//     arr[j] = arr[i];
-//     arr[i] = t;
-// }
+function resolveAfter1Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved_1s');
+        }, 1000);
+    });
+}
 
-// quickSort(mock);
-var n = 1;
-var a = {};
-a[n] = "huang";
-console.log(a);
+async function usingAsync() {
+    var result_1 = await resolveAfter1Seconds();
+    console.log(result_1);
+    var result_2 = await resolveAfter2Seconds();
+    console.log(result_2);
+    var result_3 = await resolveAfter3Seconds();
+    console.log(result_3);
+    // expected output: 'resolved'
+}
 
+usingAsync();
 
 
-
-
-//Fibonacci
+// resolveAfter1Seconds()
+//     .then(v => {console.log(v); return resolveAfter2Seconds()})
+//         .then(v => {console.log(v); return resolveAfter3Seconds()})
+//             .then(v => console.log(v));
